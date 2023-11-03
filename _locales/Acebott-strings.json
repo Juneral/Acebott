@@ -1,0 +1,8 @@
+{
+  "Acebott.LED.OFF|block": "OFF",
+  "Acebott.LED.ON|block": "ON",
+  "Acebott.setled|block": "LED at %pin| set %status",
+  "{id:category}Acebott": "Acebott",
+  "{id:group}LED": "LED",
+  "{id:subcategory}Display": "Display"
+}

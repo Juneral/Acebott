@@ -1,0 +1,8 @@
+{
+  "Acebott.LED.OFF|block": "关闭",
+  "Acebott.LED.ON|block": "打开",
+  "Acebott.setled|block": "LED接 %pin| 设为 %status",
+  "{id:category}Acebott": "Acebott",
+  "{id:group}LED": "LED灯",
+  "{id:subcategory}Display": "显示类"
+}
