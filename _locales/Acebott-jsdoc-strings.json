@@ -1,1 +1,5 @@
-{}
+{
+  "Acebott.Servo": "//  * Servo Execute\n//  * @param index Servo Channel; eg: S1, S2\n//  * @param degree [0-180] degree of servo; eg: 0, 90, 180\n//",
+  "Acebott._130_DC_motor_run": "* @param _INA  ina eg: AnalogPin.P1",
+  "Acebott._130_DC_motor_run|param|_INB": "inb eg: AnalogPin.P2"
+}

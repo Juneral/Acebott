@@ -2,7 +2,8 @@
     "name": "Acebott",
     "version": "0.0.1",
     "description": "Acebott extension for micro:bit",
-    "license": "ff",
+    "license": "MIT",
+    "icon": "icon_1.png",
     "dependencies": {
         "core": "*",
         "radio": "*",
