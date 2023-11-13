@@ -52,11 +52,11 @@ enum DigitalWritePin{
   P11 = 11,
   //% block="P12"
   P12 = 12,
-  //% block="P13"
+  //% block="P13(SCK)"
   P13 = 13,
-  //% block="P14"
+  //% block="P14(MISO)"
   P14 = 14,
-  //% block="P15"
+  //% block="P15(MOSI)"
   P15 = 15,
   //% block="P16"
   P16 = 16
