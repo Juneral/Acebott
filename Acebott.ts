@@ -642,7 +642,7 @@ namespace Acebott{
    export function tm1650_configure(name: string = "1", clk:DigitalWritePin, dio:DigitalWritePin) : void {
        let index: number = 0
        let clkPin = getDigitalPin(clk)
-       let dioPin = getDigitalPin(clk)
+       let dioPin = getDigitalPin(dio)
        index = findInstanceIndex(name)
        if (index == instanceCount) {
            instanceNames[index] = name;
