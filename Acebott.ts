@@ -1,103 +1,101 @@
+enum LED{
+    //% block="ON"
+    ON = 1,
+    //% block="OFF"
+    OFF = 0
+}
+
+enum AnalogReadPin{
+  //% block="P0"
+  P0 = 0,
+  //% block="P1"
+  P1 = 1,
+  //% block="P2"
+  P2 = 2,
+  //% block="P3"
+  P3 = 3,
+  //% block="P4"
+  P4 = 4,
+  //% block="P10"
+  P10 = 10
+}
+
+enum AnalogWritePin{
+  //% block="P0"
+  P0 = 0,
+  //% block="P1"
+  P1 = 1,
+  //% block="P2"
+  P2 = 2,
+  //% block="P3"
+  P3 = 3,
+  //% block="P4"
+  P4 = 4,
+  //% block="P10"
+  P10 = 10
+}
+
+enum DigitalWritePin{
+  //% block="P0"
+  P0 = 0,
+  //% block="P1"
+  P1 = 1,
+  //% block="P2"
+  P2 = 2,
+  //% block="P5"
+  P5 = 5,
+  //% block="P8"
+  P8 = 8,
+  //% block="P9"
+  P9 = 9,
+  //% block="P11"
+  P11 = 11,
+  //% block="P12"
+  P12 = 12,
+  //% block="P13"
+  P13 = 13,
+  //% block="P14"
+  P14 = 14,
+  //% block="P15"
+  P15 = 15,
+  //% block="P16"
+  P16 = 16
+}
+
+enum DistanceUnit {
+  //% block="cm"
+  CM = 0,
+  //% block="inch"
+  INCH = 1
+}
+
+enum Servos {
+  //% block="Servo1"
+  Servo1 = 1,
+  //% block="Servo2"
+  Servo2 = 2
+}
+
+enum RGB_Index{
+  //% block="RGB1"
+  RGB1 = 1,
+  //% block="RGB2"
+  RGB2 = 2
+}
+
+enum Motors{
+  //% block="M1"
+  M1 = 0,
+  //% block="M2"
+  M2 = 1,
+  //% block="M3"
+  M3 = 2,
+  //% block="M4"
+  M4 = 3
+}
 
 //% icon="icon_1.png"
 namespace Acebott{
-
-    export enum LED{
-        //% block="ON"
-        ON = 1,
-        //% block="OFF"
-        OFF = 0
-    }
-
-    export enum AnalogReadPin{
-      //% block="P0"
-      P0 = 0,
-      //% block="P1"
-      P1 = 1,
-      //% block="P2"
-      P2 = 2,
-      //% block="P3"
-      P3 = 3,
-      //% block="P4"
-      P4 = 4,
-      //% block="P10"
-      P10 = 10
-    }
-
-    export enum AnalogWritePin{
-      //% block="P0"
-      P0 = 0,
-      //% block="P1"
-      P1 = 1,
-      //% block="P2"
-      P2 = 2,
-      //% block="P3"
-      P3 = 3,
-      //% block="P4"
-      P4 = 4,
-      //% block="P10"
-      P10 = 10
-    }
-
-    export enum DigitalWritePin{
-      //% block="P0"
-      P0 = 0,
-      //% block="P1"
-      P1 = 1,
-      //% block="P2"
-      P2 = 2,
-      //% block="P5"
-      P5 = 5,
-      //% block="P8"
-      P8 = 8,
-      //% block="P9"
-      P9 = 9,
-      //% block="P11"
-      P11 = 11,
-      //% block="P12"
-      P12 = 12,
-      //% block="P13"
-      P13 = 13,
-      //% block="P14"
-      P14 = 14,
-      //% block="P15"
-      P15 = 15,
-      //% block="P16"
-      P16 = 16
-    }
-
-    export const enum DistanceUnit {
-      //% block="cm"
-      CM = 0,
-      //% block="inch"
-      INCH = 1
-    }
-
-    export enum Servos {
-      //% block="Servo1"
-      Servo1 = 1,
-      //% block="Servo2"
-      Servo2 = 2
-    }
-
-    export enum RGB_Index{
-      //% block="RGB1"
-      RGB1 = 1,
-      //% block="RGB2"
-      RGB2 = 2
-    }
-
-    export enum Motors{
-      //% block="M1"
-      M1 = 0,
-      //% block="M2"
-      M2 = 1,
-      //% block="M3"
-      M3 = 2,
-      //% block="M4"
-      M4 = 3
-    }
-
     const PCA9685_ADDRESS = 0x40
     const MODE1 = 0x00
     const MODE2 = 0x01
@@ -176,11 +174,21 @@ namespace Acebott{
         buf[4] = (off >> 8) & 0xff;
         pins.i2cWriteBuffer(PCA9685_ADDRESS, buf);
     }
-   //  /**
-   //  * Servo Execute
-   //  * @param index Servo Channel; eg: S1, S2
-   //  * @param degree [0-180] degree of servo; eg: 0, 90, 180
-   // */
+
+    //% blockId=setLed block="LED at %pin| set %status"
+    //% weight=70
+    //% subcategory="Display"
+    //% group="LED"
+    export function setLed(pin: DigitalWritePin, status: LED): void {
+        let port = getDigitalPin(pin)
+        pins.digitalWritePin(port, status)
+    }
+
+    /**
+    * Servo Execute
+    * @param index Servo Channel; eg: S1, S2
+    * @param degree [0-180] degree of servo; eg: 0, 90, 180
+   */
    //% blockId=Servo block="Servo|%index|degree %degree"
    //% degree.min=0 degree.max=180
    //% group="Servo"
@@ -226,7 +234,6 @@ namespace Acebott{
 
     const MOTORS_PIN: number[][] = [[4, 3], [12, 11], [7, 6], [9, 8]]
     //% blockId=dc_motor_run block="DC Motor|%index|run speed %speed"
-    //% group="Motor"
     //% speed.min=-255 speed.max=255
     //% group="DC Motor"
     //% subcategory="Executive"
@@ -600,38 +607,6 @@ namespace Acebott{
         return i
     }
 
-    //% blockId=tm1650_configure block="4-Digit Tube |named %name| with CLK %clk|DIO %dio"
-    //% name.defl="1" clk.defl=DigitalWritePin.P1 dio.defl=DigitalPin.P0
-    //% subcategory="Display"
-    //% group="4-Digit Tube"
-    export function tm1650_configure(name: string = "1", clk:DigitalWritePin = DigitalWritePin.P1, dio:DigitalPin = DigitalPin.P0 ) : void {
-        let index: number = 0
-        let clkPin = getDigitalPin(clk)
-        index = findInstanceIndex(name)
-        if (index == instanceCount) {
-            instanceNames[index] = name;
-            instances[index] = new TM1650Class(clkPin, dio)
-            currentInstanceIndex = index
-            instanceCount++
-        } else {
-            instances[index].reconfigure(clkPin, dio)
-            currentInstanceIndex = index
-        }
-    }
-
-    //% blockId=tm1650_displayOn block="4-Digit Tube turn on display|named %name|at brightness %brightness"
-    //% name.defl="1"
-    //% brightness.min=1 brightness.max=7 brightness.defl=3
-    //% subcategory="Display"
-    //% group="4-Digit Tube"
-    export function tm1650_displayOn(name: string = "1", brightness: number = 3) : void {
-        let index: number = findInstanceIndex(name)
-        if (index != instanceCount) {
-            currentInstanceIndex = index
-            instances[currentInstanceIndex].displayOn(brightness)
-        }
-    }
-
    //% blockId=tm1650_displayOff block="4-Digit Tube |named %name| turn off"
    //% name.defl="1"
    //% subcategory="Display"
@@ -639,6 +614,15 @@ namespace Acebott{
    export function tm1650_displayOff(name: string = "1") : void {
        let index: number = findInstanceIndex(name)
        instances[index].displayOff()
+   }
+
+   //% blockId=tm1650_showString block="4-Digit Tube |named %name| show string|%s"
+   //% name.defl="1" s.defl="Ace"
+   //% subcategory="Display"
+   //% group="4-Digit Tube"
+   export function tm1650_showString(name: string = "1", s: string = "Ace") : void {
+       let index: number = findInstanceIndex(name)
+       instances[index].showString(s)
    }
 
    //% blockId=tm1650_showDecimal block="4-Digit Tube |named %name|show number|%n"
@@ -651,24 +635,28 @@ namespace Acebott{
        instances[index].showDecimal(n)
    }
 
-   //% blockId=tm1650_showString block="4-Digit Tube |named %name| show string|%s"
-   //% name.defl="1" s.defl="Ace"
+   //% blockId=tm1650_configure block="4-Digit Tube |named %name| with CLK %clk|DIO %dio"
+   //% name.defl="1" clk.defl=DigitalWritePin.P0 dio.defl=DigitalWritePin.P1
    //% subcategory="Display"
    //% group="4-Digit Tube"
-   export function tm1650_showString(name: string = "1", s: string = "Ace") : void {
-       let index: number = findInstanceIndex(name)
-       instances[index].showString(s)
+   export function tm1650_configure(name: string = "1", clk:DigitalWritePin, dio:DigitalWritePin) : void {
+       let index: number = 0
+       let clkPin = getDigitalPin(clk)
+       let dioPin = getDigitalPin(clk)
+       index = findInstanceIndex(name)
+       if (index == instanceCount) {
+           instanceNames[index] = name;
+           instances[index] = new TM1650Class(clkPin, dioPin)
+           currentInstanceIndex = index
+           instanceCount++
+       } else {
+           instances[index].reconfigure(clkPin, dioPin)
+           currentInstanceIndex = index
+       }
+       instances[currentInstanceIndex].displayOn(6)
    }
    // 4-Digital Tube @end
 
-    //% blockId=setLed block="LED at %pin| set %status"
-    //% weight=70
-    //% subcategory="Display"
-    //% group="LED"
-    export function setLed(pin: DigitalWritePin, status: LED): void {
-        let port = getDigitalPin(pin)
-        pins.digitalWritePin(port, status)
-    }
 
     //% blockId=Photoresistance block="Photoresistance at %pin get value"
     //% weight=70
@@ -714,8 +702,8 @@ namespace Acebott{
     //% weight=70
     //% inlineInputMode=inline
     //% speed.min=-255 speed.max=255
-    //% _INA.defl = AnalogWritePin.P0
-    //% _INB.defl = DigitalPin.P1
+    //% _INA.defl=AnalogWritePin.P0
+    //% _INB.defl=DigitalWritePin.P1
     //% speed.defl=100
     //% group="130 DC Motor"
     //% subcategory="Executive"
@@ -738,7 +726,8 @@ namespace Acebott{
     // Ultrasonic Sensor @start
     //% blockId="ultrasonic_distance"
     //% block="Ultrasonic Sensor with Echo|%echo|Trig|%trig|get distance in %unit"
-    //% weight=60
+    //% echo.defl=AnalogWritePin.P0
+    //% trig.defl=DigitalWritePin.P1
     //% group="Ultrasonic Sensor"
     //% subcategory="Sensor"
     export function UltrasonicDistance(echo: DigitalPin, trig: DigitalWritePin, unit: DistanceUnit): number {
